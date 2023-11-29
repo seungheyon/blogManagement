@@ -3,6 +3,7 @@ package com.example.blogmanagement.board.controller;
 import com.example.blogmanagement.board.Service.BoardService;
 import com.example.blogmanagement.board.dto.BoardRequestDto;
 import com.example.blogmanagement.board.dto.BoardResponseDto;
+import com.example.blogmanagement.board.dto.BoardUpdateDto;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -22,5 +23,10 @@ public class BoardController {
     @GetMapping("/boards/{boardId}")
     public BoardResponseDto getBoard(@PathVariable Long boardId){
         return boardService.getBoard(boardId);
+    }
+
+    @PutMapping("/boards/{boardId}")
+    public void updateBoard(@PathVariable Long boardId, @RequestBody BoardUpdateDto boardUpdateDto){
+        boardService.updateBoard(boardId, boardUpdateDto);
     }
 }

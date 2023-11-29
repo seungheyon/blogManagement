@@ -1,5 +1,6 @@
 package com.example.blogmanagement.board.Entity;
 
+import com.example.blogmanagement.board.dto.BoardUpdateDto;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,4 +23,9 @@ public class Board {
 
     private String title;
     private String contents;
+
+    public void updateBoard(BoardUpdateDto boardUpdateDto){
+        this.title = boardUpdateDto.getTitle();
+        this.contents = boardUpdateDto.getContents();
+    }
 }
