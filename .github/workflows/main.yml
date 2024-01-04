@@ -14,7 +14,7 @@ jobs:
         image: mysql:latest
         env:
           MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
-          MYSQL_DATABASE: your_database_name
+          MYSQL_DATABASE: boardtest
           MYSQL_USER: your_mysql_user
           MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
         ports:
@@ -30,13 +30,13 @@ jobs:
       with:
         java-version: '17'  # 자신의 프로젝트에 맞는 Java 버전으로 변경하세요
 
-    - name: Build with MySQL
-      run: |
-        # 여기에 빌드 스크립트 명령어 입력
-        # 예시: ./gradlew build
+    - name: Build with Gradle
+      uses: gradle/gradle-build-action@bd5760595778326ba7f1441bcf7e88b49de61a25 # v2.6.0
+      with:
+        arguments: build
         
       env:
         DB_HOST: localhost
-        DB_USER: your_mysql_user
-        DB_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
-        DB_NAME: your_database_name
+        DB_USER: root
+        DB_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
+        DB_NAME: boardtest
