@@ -36,7 +36,17 @@ jobs:
       uses: gradle/gradle-build-action@bd5760595778326ba7f1441bcf7e88b49de61a25 # v2.6.0
       with:
         arguments: build
-        
+    - name: Save test reports as artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: test-reports
+        path: /home/runner/work/blogManagement/blogManagement/build/reports/tests/test  # 테스트 리포트가 저장된 경로에 맞게 수정
+    - name: Download test reports
+      uses: actions/download-artifact@v2
+      with:
+        name: test-reports
+        path: /C:\Users\User\Desktop\나무발발이  # 저장한 artifacts가 다운로드될 경로에 맞게 수정
+      
       env:
         DB_HOST: localhost
         DB_USER: root
