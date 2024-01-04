@@ -1,0 +1,39 @@
+name: Build with MySQL
+
+on:
+  push:
+    branches: [ "githubActionsBuildTest" ]
+  # pull_request:
+  #   branches: [ "master" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:latest
+        env:
+          MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}  # 원하는 비밀번호로 변경하세요
+          MYSQL_DATABASE: boardtest   # 데이터베이스 이름 설정
+          MYSQL_USER: Lee         # MySQL 사용자 이름 설정
+          MYSQL_PASSWORD: ${{ secrets.LEE_PASSWORD }}       # 사용자 비밀번호 설정
+        ports:
+          - 3306:3306
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up JDK
+      uses: actions/setup-java@v3
+      with:
+        java-version: '17'  # 자신의 프로젝트에 맞는 Java 버전으로 변경하세요
+        distribution: 'zulu'
+    - name: Run chmod to make gradlew executable
+      run: chmod +x ./gradlew
+    - name: Build with Gradle
+      uses: gradle/gradle-build-action@bd5760595778326ba7f1441bcf7e88b49de61a25 # v2.6.0
+      with:
+        arguments: build
