@@ -1,4 +1,4 @@
-name: Build with MySQL
+name: Build in Runner
 
 on:
   push:
