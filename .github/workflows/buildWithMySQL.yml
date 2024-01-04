@@ -2,7 +2,7 @@ name: Build with MySQL
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "poo" ]
       #- main  # 빌드를 원하는 브랜치로 변경하세요
 
 jobs:
