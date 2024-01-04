@@ -37,3 +37,10 @@ jobs:
       uses: gradle/gradle-build-action@bd5760595778326ba7f1441bcf7e88b49de61a25 # v2.6.0
       with:
         arguments: build
+
+    - name: Checkout code
+      uses: actions/checkout@v2
+      
+    - name: Check MySQL Connection
+      run: |
+        mysql -h 127.0.0.1 -P 3306 -u test_user -p'user_password' -e "SELECT 1;"
