@@ -1,0 +1,42 @@
+name: Build with MySQL
+
+on:
+  push:
+    branches:
+      - main  # 빌드를 원하는 브랜치로 변경하세요
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    services:
+      mysql:
+        image: mysql:latest
+        env:
+          MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
+          MYSQL_DATABASE: your_database_name
+          MYSQL_USER: your_mysql_user
+          MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up JDK
+      uses: actions/setup-java@v3
+      with:
+        java-version: '17'  # 자신의 프로젝트에 맞는 Java 버전으로 변경하세요
+
+    - name: Build with MySQL
+      run: |
+        # 여기에 빌드 스크립트 명령어 입력
+        # 예시: ./gradlew build
+        
+      env:
+        DB_HOST: localhost
+        DB_USER: your_mysql_user
+        DB_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
+        DB_NAME: your_database_name
