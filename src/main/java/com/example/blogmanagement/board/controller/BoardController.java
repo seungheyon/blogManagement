@@ -1,6 +1,6 @@
 package com.example.blogmanagement.board.controller;
 
-import com.example.blogmanagement.board.Service.BoardService;
+import com.example.blogmanagement.board.service.BoardService;
 import com.example.blogmanagement.board.dto.BoardRequestDto;
 import com.example.blogmanagement.board.dto.BoardResponseDto;
 import com.example.blogmanagement.board.dto.BoardUpdateDto;

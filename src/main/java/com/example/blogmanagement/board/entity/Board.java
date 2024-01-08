@@ -1,4 +1,4 @@
-package com.example.blogmanagement.board.Entity;
+package com.example.blogmanagement.board.entity;
 
 import com.example.blogmanagement.board.dto.BoardUpdateDto;
 import jakarta.persistence.Entity;

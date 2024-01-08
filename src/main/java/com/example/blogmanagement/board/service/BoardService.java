@@ -1,7 +1,7 @@
-package com.example.blogmanagement.board.Service;
+package com.example.blogmanagement.board.service;
 
-import com.example.blogmanagement.board.Entity.Board;
-import com.example.blogmanagement.board.Repository.BoardRepository;
+import com.example.blogmanagement.board.entity.Board;
+import com.example.blogmanagement.board.repository.BoardRepository;
 import com.example.blogmanagement.board.dto.BoardRequestDto;
 import com.example.blogmanagement.board.dto.BoardResponseDto;
 import com.example.blogmanagement.board.dto.BoardUpdateDto;
@@ -17,8 +17,8 @@ public class BoardService {
         this.boardRepository = boardRepository;
     }
 
-    public void createBoard(BoardRequestDto boardRequestDto){
-        boardRepository.save(Board.builder()
+    public Board createBoard(BoardRequestDto boardRequestDto){
+        return boardRepository.save(Board.builder()
                 .title(boardRequestDto.getTitle())
                 .contents(boardRequestDto.getContents())
                 .build());
