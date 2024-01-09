@@ -1,10 +1,12 @@
 package com.example.blogmanagement.board.service;
 
+
 import com.example.blogmanagement.board.entity.Board;
 import com.example.blogmanagement.board.repository.BoardRepository;
 import com.example.blogmanagement.board.dto.BoardRequestDto;
 import com.example.blogmanagement.board.dto.BoardResponseDto;
 import com.example.blogmanagement.board.dto.BoardUpdateDto;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
