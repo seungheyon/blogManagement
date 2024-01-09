@@ -15,7 +15,7 @@ jobs:
       mysql:
         image: mysql:latest
         env:
-          MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}  # 원하는 비밀번호로 변경하세요
+          MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}  # 원하는 비밀번호로 변경
           MYSQL_DATABASE: boardtest   # 데이터베이스 이름 설정
           MYSQL_USER: admin         # MySQL 사용자 이름 설정
           MYSQL_PASSWORD: admin       # 사용자 비밀번호 설정
@@ -23,21 +23,18 @@ jobs:
           - 3306:3306
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+    - name: Checkout code            # 내 코드 체크아웃
+      uses: actions/checkout@v3      # 체크아웃 actions 사용
 
     - name: Set up JDK
-      uses: actions/setup-java@v3
+      uses: actions/setup-java@v3    # JDK setup actoins 사용
       with:
-        java-version: '17'  # 자신의 프로젝트에 맞는 Java 버전으로 변경하세요
+        java-version: '17'    # 자신의 프로젝트에 맞는 Java 버전으로 변경
         distribution: 'zulu'
     - name: Run chmod to make gradlew executable
-      run: chmod +x ./gradlew
+      run: chmod +x ./gradlew  # gradlew 명령어 실행 권한 부여
     - name: Build with Gradle
       uses: gradle/gradle-build-action@bd5760595778326ba7f1441bcf7e88b49de61a25 # v2.6.0
       with:
         arguments: build
       
-    # - name: Check MySQL Connection
-    #   run: |
-    #     mysql -h 127.0.0.1 -P 3306 -u test_user -p'user_password' -e "SELECT 1;"
